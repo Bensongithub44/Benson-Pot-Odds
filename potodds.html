@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pot Odds Calculator</title>
+</head>
+<body>
+    <h1>Pot Odds Calculator</h1>
+    <label for="potAmount">Enter the pot amount (P): </label>
+    <input type="number" id="potAmount" step="0.01"><br><br>
+    <label for="betSize">Enter the bet size (B): </label>
+    <input type="number" id="betSize" step="0.01"><br><br>
+    <button onclick="calculatePotOdds()">Calculate Pot Odds</button>
+    <p id="result"></p>
+
+    <script>
+        function calculatePotOdds() {
+            const potAmount = parseFloat(document.getElementById('potAmount').value);
+            const betSize = parseFloat(document.getElementById('betSize').value);
+
+            if (isNaN(potAmount) || isNaN(betSize)) {
+                document.getElementById('result').innerText = 'Please enter valid numerical values for pot amount and bet size.';
+                return;
+            }
+
+            const potOdds = betSize / (potAmount + betSize);
+            const potOddsPercentage = potOdds * 100;
+
+            document.getElementById('result').innerText = `Pot Odds: ${potOddsPercentage.toFixed(2)}%`;
+        }
+    </script>
+</body>
+</html>
